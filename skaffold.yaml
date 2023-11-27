@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+metadata:
+  name: skaffold
+build:
+  platforms: ["linux/amd64","linux/arm64/v8"]
+  local:
+    useBuildkit: true
+  artifacts:
+    - image: 038340027651.dkr.ecr.us-east-1.amazonaws.com/graylog-github-app-secret-refresher
+      docker:
+        dockerfile: Dockerfile
+        network: host

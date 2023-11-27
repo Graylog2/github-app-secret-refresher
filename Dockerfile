@@ -4,7 +4,10 @@ COPY go.mod .
 COPY go.sum .
 COPY cmd ./cmd
 COPY internal ./internal
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-w -s" -o app cmd/main.go
+
+ARG TARGETARCH
+
+RUN GOOS=linux GOARCH=$TARGETARCH CGO_ENABLED=0 go build -ldflags="-w -s" -o app cmd/main.go
 
 FROM alpine:3.9.3
 RUN apk add --no-cache bash
